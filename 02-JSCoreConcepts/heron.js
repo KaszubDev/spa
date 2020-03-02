@@ -6,6 +6,9 @@ h = 7
 
 // Pole trókąta o bokach ..., ... oraz ... wynosi ... .
 
-let a = () => "aaaa";
+let obliczPole = (a,b,c) => {
+    let p = 0.5 * (a + b + c);
+    return (Math.sqrt(p * ((p-a) * (p-b) * (p-c))));
+}
 
-console.log( a() );
+console.log(obliczPole(b,c,h));

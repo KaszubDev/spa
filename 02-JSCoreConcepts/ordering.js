@@ -1,20 +1,15 @@
-const reverse = function(arr) {
-    arrReversed = [];
-    arr.forEach(item => arrReversed.push(item));
-    arrReversed.reverse();
-    return arrReversed;
+const reverse = (arr) => {
+    return arr.reverse();
 }
 
 const sort = function(arr) {
-    arrSorted = [];
-    // ...
-    return arrSorted;
+    return arr.sort();
 }
 
 const even = function(arr) {
-    let arrEven = [];
-    // ...
-    return arrEven;
+    let array = [];
+    arr.map(item => item % 2 == 0 ? array.push(item) : null);
+    return array;
 }
 
 numbers = [8,3,2,1,5,4,6];
