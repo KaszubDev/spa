@@ -3,11 +3,36 @@
 	<head>
 		<title>Create DOM elements</title>
 		<meta charset="UTF-8">
+		<style rel="stylesheet">
+			.table {
+				margin: 0 auto;
+				text-align: center;
+				margin-top: 50px;
+				border-collapse: collapse;
+			}
+		</style>
 	</head>
 	<body>
 		<script>
-			// a JavaScript code here ...
-			
+			var columns_number = 2;
+			var rows_number = 2;
+
+			var counter = 1;
+			var table = document.createElement('table');
+			table.setAttribute('border','1');
+			table.className += 'table';
+			for (var i = 0; i < rows_number; i++) {
+    			var tr = document.createElement('tr');
+    			for (var j = 0; j < columns_number; j++) {
+        			var td = document.createElement('td');
+					td.style.padding = '10px 100px';
+        			td.appendChild(document.createTextNode(counter));
+        			tr.appendChild(td);
+					counter++;
+    			}
+    			table.appendChild(tr);
+  			}
+			document.body.appendChild(table);
 		</script>
 	</body>
 </html>

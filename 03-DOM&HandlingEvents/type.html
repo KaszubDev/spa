@@ -23,7 +23,28 @@
 		<textarea rows="15" cols="50"></textarea><br>
 		
 		<script>
-			// a JavaScript code here ...
+			var boo = false;
+			var timer=0, chars=0, words=0;
+			var textArea = document.getElementsByTagName('textarea')[0];
+			textArea.onkeypress = () => {
+				chars++;
+				if (boo == false) {
+					let tt = setInterval(() => {
+							if (timer == 30) {
+								clearInterval(tt);
+								words = textArea.value.match(/\S+/g).length;
+								console.log(words);
+								let results = document.createElement('h2');
+								results.innerHTML = `Number of characters: ${chars} Number of words: ${words}`;
+								document.body.appendChild(results);
+							}
+							else {
+								timer ++;
+							}
+					}, 1000);
+				}
+				boo = true;
+			}
 			
 		</script>
 		
