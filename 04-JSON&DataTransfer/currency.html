@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency exchange</title>
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: center;
+          padding: 8px;
+        }
+        </style>
+</head>
+<body>
+    <h1>Current exchange rates</h1>
+    <table>
+        <tr>
+            <th>EUR</th>
+            <th>USD</th>
+            <th>GBP</th>
+        </tr>
+        <tr>
+            <td id="eur"></td>
+            <td id="usd"></td>
+            <td id="gbp"></td>
+        </tr>
+    </table>
+    <script>
+        function display(currency,id) {
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState==4 && xhr.status==200){
+                    let data = JSON.parse(xhr.responseText);
+                    document.getElementById(id).innerHTML = data.rates[0].mid;
+                }
+            }
+            xhr.open('GET', `http://api.nbp.pl/api/exchangerates/rates/a/${currency}/?format=json`);
+            xhr.send();
+        }
+        display("eur","eur");
+        display("usd","usd");
+        display("gbp","gbp");
+    </script>
+</body>
+</html>

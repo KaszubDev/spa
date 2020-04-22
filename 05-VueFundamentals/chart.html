@@ -2,8 +2,12 @@
 <html>
 <head>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 </head>
 <body>
+  <div id="app">
+    <canvas id="myChart" width="400" height="100"></canvas>
+  </div>
   <script>
     var app = new Vue({
       el: '#app',
@@ -29,9 +33,47 @@
             language: 'Php',
             popularity: 7.37
           }
-        ] 
-      }
+        ]
+      },
     });
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [app.films[0].language, app.films[1].language, app.films[2].language, app.films[3].language, app.films[4].language],
+        datasets: [{
+            label: 'Programming language popularity',
+            data: [app.films[0].popularity, app.films[1].popularity, app.films[2].popularity, app.films[3].popularity, app.films[4].popularity],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
   </script>
 </body>
 </html>

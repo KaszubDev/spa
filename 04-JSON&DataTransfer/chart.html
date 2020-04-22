@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart</title>
+</head>
+<body>
+    <canvas id="myChart" width="400" height="100vh"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script>
+        window.onload = function() {
+        function makeChart(dane){
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [dane[0].data,dane[1].data,dane[2].data,dane[3].data,dane[4].data,dane[5].data,dane[6].data,dane[7].data,dane[8].data,dane[9].data],
+                datasets: [{
+                    label: 'Cena złota w PLN',
+                    data: [dane[0].cena,dane[1].cena,dane[2].cena,dane[3].cena,dane[4].cena,dane[5].cena,dane[6].cena,dane[7].cena,dane[8].cena,dane[9].cena],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+        }
+        var method = 'GET';
+        var data = [] ;
+        var URL = 'http://api.nbp.pl/api/cenyzlota/last/10/?format=json';
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function(){
+            if (xhr.readyState==4 && xhr.status==200){
+                data = JSON.parse(xhr.response);
+                console.log(data[0].data);
+                makeChart(data);
+            }
+        ;};
+        xhr.open(method, URL);
+        xhr.send();
+        }
+        </script>
+</body>
+</html>

@@ -4,8 +4,17 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-  <h1>Grades</h1>    
-
+  <h1>RECEIPT</h1>
+  <div id="app">
+    <p>--------------------------</p>
+    <p>Product: {{ product.name }}</p>
+    <p>Unit Price: {{ product.unitPrice }}</p>
+    <p>Quantity: {{ product.quantity }}</p>
+    <p>Amount: {{ product.quantity * product.unitPrice }}</p>
+    <p>VAT Tax Rate: {{ product.VAT }}%</p>
+    <p>================</p>
+    <h3>Total: {{ (product.quantity * product.unitPrice) * 0.23 + product.quantity * product.unitPrice }} zł</h3>
+  </div>
   <script>
     var app = new Vue({
       el: '#app',
@@ -15,7 +24,7 @@
           unitPrice: 17.5,
           quantity: 3,
           VAT: 23
-        }
+        },
       }
     });
   </script>

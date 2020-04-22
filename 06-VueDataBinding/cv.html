@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>CV</h1>
+    <form>
+        <strong><label for="name">Name</label></strong><br/>
+            <input id="name" type="text" v-model="name"/><br/>
+        <strong><label for="surname">Surname</label></strong><br/>
+            <input id="surname" type="text" v-model="surname"/><br/>
+        <strong><label for="age">Age</label></strong><br/>
+            <input type="number" id="age" v-model="age"><br/>
+        <strong><span>Sex</span></strong><br/>
+        <label for="male">Male</label>
+            <input id="male" type="radio" name="sex" value="Male" v-model="sex"/><br/>
+        <label for="female">Female</label>
+            <input id="female" type="radio" name="sex" value="Female" v-model="sex"/><br/>
+        <strong><label for="education">Education</label></strong>
+        <select id="education" v-model="education">
+            <option>None</option>
+            <option>Primary</option>
+            <option>Secondary</option>
+            <option>Higher</option>
+        </select>
+        <br/>
+        <strong>Skills</strong><br/>
+        <label for="PC">Computer skills</label>
+            <input type="checkbox" value="Computer skills" id="PC" v-model="skills"/>
+        <label for="driverLicense">Driver license</label>
+            <input type="checkbox" value="Driver license" id="driverLicense" v-model="skills"/>
+        <label for="creativity">Creativity</label>
+            <input type="checkbox" value="Creativity" id="creativity" v-model="skills"/>
+        <label for="team">Teamwork</label>
+            <input type="checkbox" value="Teamwork" id="team" v-model="skills"/><br/><br/>
+        <button type="button" @click="addToStorage()">Save data</button><br/>
+        <br/>
+        <button type="button" @click="loadFromStorage()">Load data</button>
+        <button type="button" @click="test()">Click</button>
+    </form>
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        name: '',
+        surname: '',
+        age: null,
+        sex: '',
+        education: '',
+        skills: []
+      },
+      methods: {
+          addToStorage: function () {
+            localStorage.name = this.name;
+            localStorage.surname = this.surname;
+            localStorage.age = this.age;
+            localStorage.sex = this.sex;
+            localStorage.education = this.education;
+            localStorage.skills = this.skills;
+          },
+          loadFromStorage: function () {
+            this.name = localStorage.name;
+            this.surname = localStorage.surname;
+            this.age = localStorage.age;
+            this.sex = localStorage.sex;
+            this.education = localStorage.education;
+            this.skills = localStorage.skills;
+          },
+          test: function () {
+              console.log(this.skills);
+          }
+      }
+    });
+  </script>
+</body>
+</html>

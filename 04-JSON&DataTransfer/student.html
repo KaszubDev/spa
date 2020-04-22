@@ -7,11 +7,16 @@
 	<body>
 		<h1>Student</h1>
 		<p>Open a console and then click the button</p>
-		<input type="button" value="Display student's data">
+		<input type="button" value="Display student's data" onclick="loadJSON()">
 		<p id="personalData"></p>
 
+		<script type="text/javascript" src="data.json"></script>
 		<script>
-
+			function loadJSON(){
+				let mydata = JSON.parse(data);
+				let personal = `${mydata.name} ${mydata.surname}`;
+				document.getElementById("personalData").innerHTML = personal;
+			}
 		</script>
 
 	</body>

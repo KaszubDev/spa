@@ -4,17 +4,27 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
+  <div id="app">
+    <strong>EMPLOYEE RECORD</strong>
+    <p>Name 1: {{name1}}</p>
+    <p>Name 2: {{name2 ? name2 : ''}}</p>
+    <p>Surname: {{surname}}</p>
+    <p>Pesel: {{nationality == "Polish" ? pesel : nationality}}</p>
+    <p>Address: {{address}}</p>
+  </div>
+
   <script>
     var app = new Vue({
       el: '#app',
       data: {
-        name1: 'Adam',
-        name2: 'Jan',
-        surname: 'Majewski',
+        name1: 'John',
+        name2: '',
+        surname: 'Brown',
         foreigner: false,
-        nationality: 'Polish',
-        pesel: '92021708229',
-        address: 'ul. Szeroka 3, Kraków',
+        nationality: 'USA',
+        pesel: '',
+        address: 'Holland Drive 4, Chicago',
+      }
     });
   </script>
 

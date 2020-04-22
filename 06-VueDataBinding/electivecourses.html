@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <h1>Elective Courses</h1>
+  <div id="app">
+    <label for="informatyka">Informatyka</label>
+    <input value="Informatyka" type="checkbox" id="informatyka" v-model="courses"><br/>
+    <label for="GP">Gospodarka Przestrzenna</label>
+    <input value="Gospodarka Przestrzenna" type="checkbox" id="GP" v-model="courses"><br/>
+    <label for="psychologia">Psychologia</label>
+    <input value="Psychologia" type="checkbox" id="psychologia" v-model="courses"><br/>
+    <label for="rachunkowosc">Rachunkowość</label>
+    <input value="Rachunkowość" type="checkbox" id="rachunkowosc" v-model="courses"><br/>
+    <label for="ekonomia">Ekonomia</label>
+    <input value="Ekonomia" type="checkbox" id="ekonomia" v-model="courses"><br/>
+    <h4>Zostało wybranych {{numberOfCourses}} przedmiotów.</h4>
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        courses: [],
+      },
+      computed: {
+        numberOfCourses: function () {
+            return this.courses.length
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
