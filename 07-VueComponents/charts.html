@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="app">
+    <data-chart :data="[1,5,4,6,3,5,1]"></data-chart>
+  </div>
+  <script type="text/x-template" id="chart">
+    <div>
+        <canvas ref="canvas" width="400" height="400"></canvas>
+    </div>
+  </script>
+  <script>
+    Vue.component('data-chart', {
+      template: '#chart',
+      props: {
+          data: {
+              type: Array,
+              required: true
+          },
+      },
+      methods: {
+          createChart(data) {
+              var ctx = this.$refs.canvas.getContext('2d');
+              var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'hege'],
+                    datasets: [{
+                        label: 'Test label',
+                        data: data,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                scales: {
+                yAxes: [{
+                    ticks: {
+                    beginAtZero: true
+                    }
+                }]}
+                }
+            });
+            console.log(this.data);
+            console.log(data);
+        }
+      },
+      mounted(){
+        this.createChart(this.data);
+      },
+    })
+    var app = new Vue({
+      el: '#app',
+    });
+  </script>
+
+</body>
+</html>

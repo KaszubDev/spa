@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js" integrity="sha256-T/f7Sju1ZfNNfBh7skWn0idlCBcI3RwdLSS4/I7NQKQ=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <my-api></my-api>
+  </div>
+  <script type="text/x-template" id="api">
+    <div>
+        <h2>{{joke}}</h2>
+    </div>
+  </script>
+  <script>
+    Vue.component('my-api', {
+      template: '#api',
+      data() {
+          return {
+              joke: null,
+          }
+      },
+      mounted: function() {
+          axios.get('https://api.chucknorris.io/jokes/random').then((response) => {
+             this.joke = response.data.value;
+          }).catch((error) => {
+              console.log(error)
+          });
+      }
+    })
+    var app = new Vue({
+      el: '#app',
+    });
+  </script>
+
+</body>
+</html>

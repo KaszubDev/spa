@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <film title="The Shawshank Redemption" year="1994" director="Frank Darabont"></film>
+    <film title="Inception" year="2010" director="Christopher Nolan"></film>
+    <film title="La vita è bella" year="1997" director="Roberto Benigni"></film>
+  </div>
+  <script type="text/x-template" id="film">
+    <div>
+        <h1>{{title}}</h1>
+        <h3>{{director}}</h3>
+        <h3>{{year}}</h3>
+    </div>
+  </script>
+  <script>
+    Vue.component('film', {
+      template: '#film',
+      props: ['title','director','year']
+    })
+    var app = new Vue({
+      el: '#app'
+    });
+  </script>
+
+</body>
+</html>
